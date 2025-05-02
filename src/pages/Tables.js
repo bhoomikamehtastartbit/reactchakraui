@@ -25,6 +25,11 @@ function Tables() {
     { id: 6, name: 'Diana Miller', email: 'diana@example.com', role: 'Editor', status: 'Inactive' },
   ];
 
+  // ✅ HOOKS MUST BE CALLED AT TOP
+  const rowHoverColor = useColorModeValue('gray.50', 'gray.700');
+  const tableHeaderBg = useColorModeValue('gray.50', 'gray.700');
+  const tableBg = useColorModeValue('white', 'gray.800');
+
   // Filter data based on search query
   const filteredData = data.filter(user =>
     Object.values(user).some(value =>
@@ -75,12 +80,13 @@ function Tables() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             maxW={{ base: 'full', md: '300px' }}
-            leftElement={<SearchIcon color="gray.500" />}
           />
           <Select
             maxW={{ base: 'full', md: '200px' }}
             value={itemsPerPage}
-            onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            onChange={(e) => {
+              // setItemsPerPage(Number(e.target.value)) // This is commented out
+            }}
           >
             <option value={3}>3 per page</option>
             <option value={5}>5 per page</option>
@@ -93,10 +99,10 @@ function Tables() {
         borderWidth="1px"
         borderRadius="lg"
         boxShadow="sm"
-        bg={useColorModeValue('white', 'gray.800')}
+        bg={tableBg}
       >
         <Table variant="simple">
-          <Thead bg={useColorModeValue('gray.50', 'gray.700')}>
+          <Thead bg={tableHeaderBg}>
             <Tr>
               <Th cursor="pointer" onClick={() => handleSort('name')}>
                 Name {sortField === 'name' && (sortOrder === 'asc' ? <TriangleUpIcon /> : <TriangleDownIcon />)}
@@ -113,9 +119,9 @@ function Tables() {
           </Thead>
           <Tbody>
             {paginatedData.map((user) => (
-              <Tr 
+              <Tr
                 key={user.id}
-                _hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
+                _hover={{ bg: rowHoverColor }}
                 cursor="pointer"
               >
                 <Td>{user.name}</Td>
@@ -168,7 +174,7 @@ function Tables() {
                 <Text><strong>Name:</strong> {selectedUser.name}</Text>
                 <Text><strong>Email:</strong> {selectedUser.email}</Text>
                 <Text><strong>Role:</strong> {selectedUser.role}</Text>
-                <Text><strong>Status:</strong> 
+                <Text><strong>Status:</strong>
                   <Badge ml={2} colorScheme={getBadgeColor(selectedUser.status)}>
                     {selectedUser.status}
                   </Badge>
