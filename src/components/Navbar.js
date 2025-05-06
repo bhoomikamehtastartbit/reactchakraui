@@ -45,12 +45,15 @@ function Navbar() {
             display={{ base: isOpen ? 'flex' : 'none', md: 'flex' }}
             width={{ base: 'full', md: 'auto' }}
             alignItems="center"
+            justifyContent="center"
             flexGrow={1}
             mt={{ base: 4, md: 0 }}
             spacing={8}
             position={{ base: 'absolute', md: 'static' }}
             top="60px"
             left={0}
+            ml={{ base: 0, md: 16 }}
+            mr={{ base: 0, md: 8 }}
             bg={{ base: useColorModeValue('white', 'gray.800'), md: 'transparent' }}
             p={{ base: 4, md: 0 }}
           >
