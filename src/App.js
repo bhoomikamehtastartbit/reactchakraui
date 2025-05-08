@@ -1,5 +1,7 @@
+// Importing necessary modules and components
 import { ChakraProvider, Box } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// Importing custom components and pages
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -8,6 +10,7 @@ import Tables from './pages/Tables';
 
 function App() {
   return (
+     // Wrapping the app in ChakraProvider to enable Chakra UI styling
     <ChakraProvider>
       <Router>
         <Box minH="100vh">
