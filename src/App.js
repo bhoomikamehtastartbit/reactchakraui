@@ -17,6 +17,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/tables" element={<Tables />} />
+            // Add this route in your Routes component
+            <Route path="/services" element={<Services />} />
           </Routes>
         </Box>
       </Router>
