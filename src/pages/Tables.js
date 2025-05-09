@@ -8,14 +8,22 @@ import {
 import { SearchIcon, ChevronLeftIcon, ChevronRightIcon, TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 
 function Tables() {
+  // Modal state management
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedUser, setSelectedUser] = useState(null);
+  
+  // Search and filtering state
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
+  
+  // Sorting state
   const [sortField, setSortField] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
   const itemsPerPage = 3;
 
+  // Sample user data
   const data = [
     { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active' },
     { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Inactive' },
@@ -26,18 +34,19 @@ function Tables() {
   ];
 
   // ✅ HOOKS MUST BE CALLED AT TOP
+  // Theme color variables for dark/light mode
   const rowHoverColor = useColorModeValue('gray.50', 'gray.700');
   const tableHeaderBg = useColorModeValue('gray.50', 'gray.700');
   const tableBg = useColorModeValue('white', 'gray.800');
 
-  // Filter data based on search query
+  // Filter data based on search query across all fields
   const filteredData = data.filter(user =>
     Object.values(user).some(value =>
       value.toString().toLowerCase().includes(searchQuery.toLowerCase())
     )
   );
 
-  // Sort data
+  // Sort data based on selected field and order
   const sortedData = [...filteredData].sort((a, b) => {
     if (sortOrder === 'asc') {
       return a[sortField] > b[sortField] ? 1 : -1;
@@ -45,13 +54,14 @@ function Tables() {
     return a[sortField] < b[sortField] ? 1 : -1;
   });
 
-  // Pagination
+  // Calculate pagination values
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
   const paginatedData = sortedData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
+  // Handle column sorting
   const handleSort = (field) => {
     if (sortField === field) {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
@@ -61,11 +71,13 @@ function Tables() {
     }
   };
 
+  // Handle row click to show user details in modal
   const handleRowClick = (user) => {
     setSelectedUser(user);
     onOpen();
   };
 
+  // Determine badge color based on status
   const getBadgeColor = (status) => {
     return status === 'Active' ? 'green' : 'red';
   };
