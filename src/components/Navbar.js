@@ -99,7 +99,6 @@ function Navbar() {
             >
               Contact
             </Link>
-            // Add this link in your navigation links
             <Link 
               as={RouterLink} 
               to="/services"
@@ -113,6 +112,20 @@ function Navbar() {
               }}
             >
               Services
+            </Link>
+            <Link 
+              as={RouterLink} 
+              to="/tables"
+              fontSize="md"
+              fontWeight="medium"
+              color={useColorModeValue('gray.600', 'gray.200')}
+              _hover={{
+                color: 'teal.500',
+                transform: 'translateY(-2px)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              Tables
             </Link>
           </Stack>
 
