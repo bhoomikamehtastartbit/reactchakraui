@@ -5,7 +5,7 @@ import {
   Heading, Box, Input, Stack, Select, Badge, TableContainer, IconButton,
   useColorModeValue
 } from '@chakra-ui/react';
-import { SearchIcon, ChevronLeftIcon, ChevronRightIcon, TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
+import { ChevronLeftIcon, ChevronRightIcon, TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 
 function Tables() {
   // Modal state management

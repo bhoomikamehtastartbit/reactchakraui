@@ -9,19 +9,21 @@ import {
   Button,
   useColorModeValue,
   Flex,
-  Badge,
   Stat,
   StatLabel,
   StatNumber,
   StatHelpText,
   Divider,
   Card,
-  CardBody,
-  Stack
+  CardBody
 } from '@chakra-ui/react';
 import { CheckCircleIcon, StarIcon, TimeIcon, SettingsIcon } from '@chakra-ui/icons';
 
 function Services() {
+  // Move useColorModeValue hooks to the top level
+  const cardBg = useColorModeValue('white', 'gray.700');
+  const textColor = useColorModeValue('gray.600', 'gray.200');
+  const ctaBg = useColorModeValue('teal.50', 'teal.900');
   // Service cards data with title, description, icon, and features
   const services = [
     {
@@ -96,17 +98,16 @@ function Services() {
             <Box
               key={index}
               p={8}
-              bg={useColorModeValue('white', 'gray.700')} // Dynamic background for light/dark mode
+              bg={cardBg}
               borderRadius="lg"
               boxShadow="lg"
-              transition="all 0.3s" // Smooth transition for hover effect
-              _hover={{ transform: 'translateY(-5px)' }} // Lift effect on hover
+              transition="all 0.3s"
+              _hover={{ transform: 'translateY(-5px)' }}
             >
-              {/* Service card content with icon, title, and features */}
               <VStack spacing={4} align="start">
                 <Icon as={service.icon} w={8} h={8} color="teal.500" />
                 <Heading size="md">{service.title}</Heading>
-                <Text color={useColorModeValue('gray.600', 'gray.200')}>
+                <Text color={textColor}>
                   {service.description}
                 </Text>
                 <Divider />
@@ -127,9 +128,9 @@ function Services() {
           ))}
         </SimpleGrid>
 
-        {/* Call-to-Action Section - Encourage user engagement */}
+        {/* Call-to-Action Section - Modified to use pre-defined color value */}
         <Box
-          bg={useColorModeValue('teal.50', 'teal.900')} // Subtle background color
+          bg={ctaBg}
           p={10}
           borderRadius="lg"
           w="full"
