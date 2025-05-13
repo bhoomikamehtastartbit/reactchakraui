@@ -15,6 +15,12 @@ function About() {
               src="https://via.placeholder.com/500"
               alt="About Us"
               borderRadius="lg"
+              fallbackSrc="https://via.placeholder.com/500"
+              bg="teal.100"
+              objectFit="cover"
+              boxShadow="lg"
+              width="100%"
+              height="400px"
             />
           </Box>
           <Box flex={1}>

@@ -101,6 +101,20 @@ function Navbar() {
             </Link>
             <Link 
               as={RouterLink} 
+              to="/services"
+              fontSize="md"
+              fontWeight="medium"
+              color={useColorModeValue('gray.600', 'gray.200')}
+              _hover={{
+                color: 'teal.500',
+                transform: 'translateY(-2px)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              Services
+            </Link>
+            <Link 
+              as={RouterLink} 
               to="/tables"
               fontSize="md"
               fontWeight="medium"
@@ -122,10 +136,16 @@ function Navbar() {
             color="white"
             bg="teal.500"
             href="#"
+            transition="all 0.3s ease"
             _hover={{
               bg: 'teal.600',
-              transform: 'translateY(-2px)',
-              boxShadow: 'lg'
+              transform: 'translateY(-2px) scale(1.05)',
+              boxShadow: 'xl',
+              transition: 'all 0.3s ease-in-out'
+            }}
+            _active={{
+              transform: 'scale(0.95)',
+              transition: 'all 0.1s ease-in-out'
             }}
           >
             Get Started
