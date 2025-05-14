@@ -88,7 +88,12 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
 } from '@chakra-ui/react';
-import { ChevronRightIcon, AddIcon, WarningIcon, CheckIcon, EmailIcon } from '@chakra-ui/icons';
+import {
+  ChevronRightIcon,
+  AddIcon,
+  WarningIcon,
+  CheckIcon
+} from '@chakra-ui/icons';
 
 function Components() {
   const toast = useToast();
@@ -403,3 +408,51 @@ function Components() {
 }
 
 export default Components;
+
+
+  // Add after the Loading States section
+  <Box>
+    <Heading size="md" mb={4}>Additional Components</Heading>
+    <Stack spacing={6}>
+      {/* Tooltip */}
+      <Box>
+        <Tooltip label="This is a tooltip" placement="top">
+          <Button>Hover me</Button>
+        </Tooltip>
+      </Box>
+
+      {/* Circular Progress */}
+      <Stack direction="row" spacing={4}>
+        <CircularProgress value={80} />
+        <CircularProgress isIndeterminate />
+      </Stack>
+
+      {/* List with Icons */}
+      <List spacing={3}>
+        <ListItem>
+          <ListIcon as={CheckIcon} color="green.500" />
+          List item with icon
+        </ListItem>
+        <ListItem>
+          <ListIcon as={AddIcon} color="blue.500" />
+          Another list item
+        </ListItem>
+      </List>
+
+      {/* Icon Button */}
+      <Stack direction="row" spacing={4}>
+        <IconButton
+          aria-label="Add item"
+          icon={<AddIcon />}
+          colorScheme="blue"
+        />
+        <IconButton
+          aria-label="Check item"
+          icon={<CheckIcon />}
+          colorScheme="green"
+        />
+      </Stack>
+
+      <Divider />
+    </Stack>
+  </Box>
