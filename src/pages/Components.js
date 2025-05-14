@@ -30,11 +30,70 @@ import {
   AvatarGroup,
   Spinner,
   Skeleton,
-  useToast
+  useToast,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
+  TagCloseButton,
+  Kbd,
+  Code,
+  Divider,
+  CircularProgress,
+  List,
+  ListItem,
+  ListIcon,
+  OrderedList,
+  UnorderedList,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  IconButton,
+  Textarea,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  PinInput,
+  PinInputField,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
 } from '@chakra-ui/react';
+import { ChevronRightIcon, AddIcon, WarningIcon, CheckIcon, EmailIcon } from '@chakra-ui/icons';
 
 function Components() {
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isDrawerOpen, onOpen: onDrawerOpen, onClose: onDrawerClose } = useDisclosure();
 
   return (
     <Container maxW="container.xl" py={10}>
@@ -165,6 +224,179 @@ function Components() {
             Show Toast
           </Button>
         </Box>
+
+        {/* Accordion Section */}
+        <Box>
+          <Heading size="md" mb={4}>Accordion</Heading>
+          <Accordion allowMultiple>
+            <AccordionItem>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Section 1
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel>
+                Content for section 1
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Section 2
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel>
+                Content for section 2
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+        </Box>
+
+        {/* Interactive Components */}
+        <Box>
+          <Heading size="md" mb={4}>Interactive Components</Heading>
+          <Stack direction="row" spacing={4}>
+            <Button onClick={onOpen}>Open Modal</Button>
+            <Button onClick={onDrawerOpen}>Open Drawer</Button>
+            <Popover>
+              <PopoverTrigger>
+                <Button>Trigger Popover</Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverHeader>Popover Header</PopoverHeader>
+                <PopoverBody>Popover content here</PopoverBody>
+              </PopoverContent>
+            </Popover>
+          </Stack>
+        </Box>
+
+        {/* Tags Section */}
+        <Box>
+          <Heading size="md" mb={4}>Tags</Heading>
+          <Stack direction="row" spacing={4}>
+            <Tag size="lg" colorScheme="red" borderRadius="full">
+              <TagLeftIcon as={WarningIcon} />
+              <TagLabel>Error</TagLabel>
+            </Tag>
+            <Tag size="lg" colorScheme="green" borderRadius="full">
+              <TagLabel>Success</TagLabel>
+              <TagRightIcon as={CheckIcon} />
+            </Tag>
+            <Tag size="lg" colorScheme="gray" borderRadius="full">
+              <TagLabel>Remove</TagLabel>
+              <TagCloseButton />
+            </Tag>
+          </Stack>
+        </Box>
+
+        {/* Keyboard and Code */}
+        <Box>
+          <Heading size="md" mb={4}>Keyboard & Code</Heading>
+          <Stack spacing={4}>
+            <Text>
+              Press <Kbd>ctrl</Kbd> + <Kbd>shift</Kbd> + <Kbd>R</Kbd> to refresh
+            </Text>
+            <Code children="console.log('hello')" />
+          </Stack>
+        </Box>
+
+        {/* Lists */}
+        <Box>
+          <Heading size="md" mb={4}>Lists</Heading>
+          <Stack spacing={4}>
+            <UnorderedList>
+              <ListItem>Unordered list item 1</ListItem>
+              <ListItem>Unordered list item 2</ListItem>
+            </UnorderedList>
+            <OrderedList>
+              <ListItem>Ordered list item 1</ListItem>
+              <ListItem>Ordered list item 2</ListItem>
+            </OrderedList>
+          </Stack>
+        </Box>
+
+        {/* Menu */}
+        <Box>
+          <Heading size="md" mb={4}>Menu</Heading>
+          <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronRightIcon />}>
+              Actions
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Download</MenuItem>
+              <MenuItem>Create a Copy</MenuItem>
+              <MenuDivider />
+              <MenuItem>Delete</MenuItem>
+            </MenuList>
+          </Menu>
+        </Box>
+
+        {/* Form Inputs */}
+        <Box>
+          <Heading size="md" mb={4}>Advanced Inputs</Heading>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+            <Textarea placeholder="Enter text here..." />
+            <NumberInput max={50} min={10}>
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            <Stack direction="row">
+              <PinInput>
+                <PinInputField />
+                <PinInputField />
+                <PinInputField />
+                <PinInputField />
+              </PinInput>
+            </Stack>
+          </SimpleGrid>
+        </Box>
+
+        {/* Breadcrumb */}
+        <Box>
+          <Heading size="md" mb={4}>Breadcrumb</Heading>
+          <Breadcrumb separator={<ChevronRightIcon />}>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">Components</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem isCurrentPage>
+              <BreadcrumbLink href="#">Current</BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
+        </Box>
+
+        {/* Modal */}
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              This is the modal content
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+
+        {/* Drawer */}
+        <Drawer isOpen={isDrawerOpen} placement="right" onClose={onDrawerClose}>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Drawer Title</DrawerHeader>
+            <DrawerBody>
+              This is the drawer content
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Stack>
     </Container>
   );
