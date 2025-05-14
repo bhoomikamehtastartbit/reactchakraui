@@ -8,6 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Tables from './pages/Tables';
 import Services from './pages/Services';  // Add this import
+import Components from './pages/Components';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/tables" element={<Tables />} />
             <Route path="/services" element={<Services />} />
+            // In your Routes:
+            <Route path="/components" element={<Components />} />
           </Routes>
         </Box>
       </Router>

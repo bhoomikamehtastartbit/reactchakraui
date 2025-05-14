@@ -115,6 +115,20 @@ function Navbar() {
             </Link>
             <Link 
               as={RouterLink} 
+              to="/components"
+              fontSize="md"
+              fontWeight="medium"
+              color={useColorModeValue('gray.600', 'gray.200')}
+              _hover={{
+                color: 'teal.500',
+                transform: 'translateY(-2px)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              Components
+            </Link>
+            <Link 
+              as={RouterLink} 
               to="/tables"
               fontSize="md"
               fontWeight="medium"
