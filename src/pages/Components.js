@@ -1,3 +1,4 @@
+// Import required Chakra UI components and icons
 import {
   Box,
   Container,
@@ -96,6 +97,7 @@ import {
 } from '@chakra-ui/icons';
 
 function Components() {
+  // Initialize hooks for toast notifications and modal/drawer states
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: isDrawerOpen, onOpen: onDrawerOpen, onClose: onDrawerClose } = useDisclosure();
@@ -103,9 +105,10 @@ function Components() {
   return (
     <Container maxW="container.xl" py={10}>
       <Stack spacing={10}>
+        {/* Main heading for the components showcase */}
         <Heading>Chakra UI Components</Heading>
 
-        {/* Alerts Section */}
+        {/* Display different types of alerts with status indicators */}
         <Box>
           <Heading size="md" mb={4}>Alerts</Heading>
           <Stack spacing={3}>
@@ -116,7 +119,7 @@ function Components() {
           </Stack>
         </Box>
 
-        {/* Badges Section */}
+        {/* Showcase different badge variations and colors */}
         <Box>
           <Heading size="md" mb={4}>Badges</Heading>
           <Stack direction="row" spacing={2}>
@@ -127,7 +130,7 @@ function Components() {
           </Stack>
         </Box>
 
-        {/* Progress Section */}
+        {/* Demonstrate progress indicators with different styles */}
         <Box>
           <Heading size="md" mb={4}>Progress</Heading>
           <Stack spacing={5}>
@@ -137,7 +140,7 @@ function Components() {
           </Stack>
         </Box>
 
-        {/* Tabs Section */}
+        {/* Tab component demonstration with multiple panels */}
         <Box>
           <Heading size="md" mb={4}>Tabs</Heading>
           <Tabs>
@@ -154,7 +157,7 @@ function Components() {
           </Tabs>
         </Box>
 
-        {/* Form Elements */}
+        {/* Collection of form input elements */}
         <Box>
           <Heading size="md" mb={4}>Form Elements</Heading>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
@@ -184,7 +187,7 @@ function Components() {
           </SimpleGrid>
         </Box>
 
-        {/* Avatar Section */}
+        {/* Avatar group demonstration with multiple user avatars */}
         <Box>
           <Heading size="md" mb={4}>Avatars</Heading>
           <Stack direction="row" spacing={4}>
@@ -198,7 +201,7 @@ function Components() {
           </Stack>
         </Box>
 
-        {/* Loading States */}
+        {/* Loading state indicators and skeleton loaders */}
         <Box>
           <Heading size="md" mb={4}>Loading States</Heading>
           <Stack spacing={5}>
@@ -211,7 +214,7 @@ function Components() {
           </Stack>
         </Box>
 
-        {/* Toast Demo */}
+        {/* Toast notification demonstration */}
         <Box>
           <Heading size="md" mb={4}>Toast</Heading>
           <Button
@@ -230,7 +233,7 @@ function Components() {
           </Button>
         </Box>
 
-        {/* Accordion Section */}
+        {/* Collapsible accordion sections */}
         <Box>
           <Heading size="md" mb={4}>Accordion</Heading>
           <Accordion allowMultiple>
@@ -259,7 +262,7 @@ function Components() {
           </Accordion>
         </Box>
 
-        {/* Interactive Components */}
+        {/* Interactive modal, drawer, and popover components */}
         <Box>
           <Heading size="md" mb={4}>Interactive Components</Heading>
           <Stack direction="row" spacing={4}>
@@ -279,7 +282,7 @@ function Components() {
           </Stack>
         </Box>
 
-        {/* Tags Section */}
+        {/* Tag variations with icons and actions */}
         <Box>
           <Heading size="md" mb={4}>Tags</Heading>
           <Stack direction="row" spacing={4}>
@@ -298,7 +301,7 @@ function Components() {
           </Stack>
         </Box>
 
-        {/* Keyboard and Code */}
+        {/* Keyboard shortcuts and code display examples */}
         <Box>
           <Heading size="md" mb={4}>Keyboard & Code</Heading>
           <Stack spacing={4}>
@@ -309,7 +312,7 @@ function Components() {
           </Stack>
         </Box>
 
-        {/* Lists */}
+        {/* Ordered and unordered list examples */}
         <Box>
           <Heading size="md" mb={4}>Lists</Heading>
           <Stack spacing={4}>
@@ -324,7 +327,7 @@ function Components() {
           </Stack>
         </Box>
 
-        {/* Menu */}
+        {/* Dropdown menu component demonstration */}
         <Box>
           <Heading size="md" mb={4}>Menu</Heading>
           <Menu>
@@ -340,7 +343,7 @@ function Components() {
           </Menu>
         </Box>
 
-        {/* Form Inputs */}
+        {/* Advanced form input components */}
         <Box>
           <Heading size="md" mb={4}>Advanced Inputs</Heading>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
@@ -363,7 +366,7 @@ function Components() {
           </SimpleGrid>
         </Box>
 
-        {/* Breadcrumb */}
+        {/* Navigation breadcrumb example */}
         <Box>
           <Heading size="md" mb={4}>Breadcrumb</Heading>
           <Breadcrumb separator={<ChevronRightIcon />}>
@@ -379,7 +382,7 @@ function Components() {
           </Breadcrumb>
         </Box>
 
-        {/* Modal */}
+        {/* Modal dialog component */}
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
@@ -391,7 +394,7 @@ function Components() {
           </ModalContent>
         </Modal>
 
-        {/* Drawer */}
+        {/* Sliding drawer component */}
         <Drawer isOpen={isDrawerOpen} placement="right" onClose={onDrawerClose}>
           <DrawerOverlay />
           <DrawerContent>
@@ -408,51 +411,3 @@ function Components() {
 }
 
 export default Components;
-
-
-  // Add after the Loading States section
-  <Box>
-    <Heading size="md" mb={4}>Additional Components</Heading>
-    <Stack spacing={6}>
-      {/* Tooltip */}
-      <Box>
-        <Tooltip label="This is a tooltip" placement="top">
-          <Button>Hover me</Button>
-        </Tooltip>
-      </Box>
-
-      {/* Circular Progress */}
-      <Stack direction="row" spacing={4}>
-        <CircularProgress value={80} />
-        <CircularProgress isIndeterminate />
-      </Stack>
-
-      {/* List with Icons */}
-      <List spacing={3}>
-        <ListItem>
-          <ListIcon as={CheckIcon} color="green.500" />
-          List item with icon
-        </ListItem>
-        <ListItem>
-          <ListIcon as={AddIcon} color="blue.500" />
-          Another list item
-        </ListItem>
-      </List>
-
-      {/* Icon Button */}
-      <Stack direction="row" spacing={4}>
-        <IconButton
-          aria-label="Add item"
-          icon={<AddIcon />}
-          colorScheme="blue"
-        />
-        <IconButton
-          aria-label="Check item"
-          icon={<CheckIcon />}
-          colorScheme="green"
-        />
-      </Stack>
-
-      <Divider />
-    </Stack>
-  </Box>
