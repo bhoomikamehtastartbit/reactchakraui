@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 
+// Navbar component
 function Navbar() {
   // State for mobile menu toggle
   const [isOpen, setIsOpen] = useState(false);
