@@ -1,7 +1,9 @@
+// Import required Chakra UI components and icons
 import { Box, Container, Heading, Text, SimpleGrid, Icon, VStack, Button, Stack, List, ListItem, ListIcon } from '@chakra-ui/react';
 import { FiHome, FiUsers, FiSettings, FiDatabase, FiCheck } from 'react-icons/fi';
 
 function Home() {
+  // Feature cards data with icons and descriptions
   const features = [
     { icon: FiHome, title: 'Feature 1', description: 'Description for feature 1' },
     { icon: FiUsers, title: 'Feature 2', description: 'Description for feature 2' },
@@ -9,6 +11,7 @@ function Home() {
     { icon: FiDatabase, title: 'Feature 4', description: 'Description for feature 4' },
   ];
 
+  // Pricing plans configuration with features and pricing details
   const pricingPlans = [
     {
       name: 'Basic',
@@ -51,6 +54,7 @@ function Home() {
 
   return (
     <Box>
+      {/* Hero Section */}
       <Box bg="teal.500" color="white" py={20}>
         <Container maxW="container.xl">
           <Heading size="2xl" mb={4}>Welcome to Our Website</Heading>
@@ -59,8 +63,10 @@ function Home() {
         </Container>
       </Box>
 
+      {/* Features Section */}
       <Container maxW="container.xl" py={20}>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
+          {/* Render feature cards dynamically */}
           {features.map((feature, index) => (
             <VStack key={index} align="start" p={6} bg="gray.50" borderRadius="lg">
               <Icon as={feature.icon} w={10} h={10} color="teal.500" />
@@ -71,8 +77,10 @@ function Home() {
         </SimpleGrid>
       </Container>
 
+      {/* Pricing Section */}
       <Box bg="gray.50" py={20}>
         <Container maxW="container.xl">
+          {/* Pricing Header */}
           <VStack spacing={8} mb={12}>
             <Heading size="2xl">Pricing Plans</Heading>
             <Text fontSize="xl" textAlign="center">
@@ -80,7 +88,9 @@ function Home() {
             </Text>
           </VStack>
 
+          {/* Pricing Cards Grid */}
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+            {/* Render pricing plan cards dynamically */}
             {pricingPlans.map((plan, index) => (
               <Box
                 key={index}
@@ -94,6 +104,7 @@ function Home() {
                 transition="all 0.3s ease"
                 _hover={{ transform: 'translateY(-8px)' }}
               >
+                {/* Popular Plan Badge */}
                 {plan.isPopular && (
                   <Box
                     position="absolute"
@@ -110,6 +121,7 @@ function Home() {
                     Popular
                   </Box>
                 )}
+                {/* Plan Details */}
                 <VStack spacing={5} align="stretch">
                   <Heading size="lg">{plan.name}</Heading>
                   <Stack spacing={1}>
@@ -118,6 +130,7 @@ function Home() {
                     </Text>
                     <Text color="gray.500">per month</Text>
                   </Stack>
+                  {/* Plan Features List */}
                   <List spacing={3}>
                     {plan.features.map((feature, idx) => (
                       <ListItem key={idx} display="flex" alignItems="center">
@@ -126,6 +139,7 @@ function Home() {
                       </ListItem>
                     ))}
                   </List>
+                  {/* Call-to-action Button */}
                   <Button
                     colorScheme={plan.isPopular ? 'teal' : 'gray'}
                     size="lg"
