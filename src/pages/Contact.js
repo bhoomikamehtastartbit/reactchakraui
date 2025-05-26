@@ -1,3 +1,4 @@
+// Import required Chakra UI components and icons
 import {
   Container,
   VStack,
@@ -20,6 +21,7 @@ import { PhoneIcon, EmailIcon, InfoIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 
 function Contact() {
+  // Initialize form state with empty values
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,8 +30,10 @@ function Contact() {
   });
   const toast = ChakraToast();
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Show success message using toast
     toast({
       title: 'Message sent!',
       description: 'We will get back to you soon.',
@@ -37,13 +41,18 @@ function Contact() {
       duration: 5000,
       isClosable: true,
     });
+    // Reset form after submission
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   return (
+    // Main container with maximum width and padding
     <Container maxW="container.xl" py={10}>
+      {/* Two-column grid layout for contact info and form */}
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+        {/* Left column - Contact Information */}
         <VStack spacing={8} align="stretch">
+          {/* Header Section */}
           <Box>
             <Heading 
               bgGradient="linear(to-r, teal.400, blue.500)"
@@ -62,17 +71,21 @@ function Contact() {
             </Text>
           </Box>
 
+          {/* Contact Information Cards */}
           <SimpleGrid columns={{ base: 1, md: 1 }} spacing={6}>
+            {/* Phone Information */}
             <Box p={5} shadow="md" borderWidth="1px" borderRadius="lg">
               <Icon as={PhoneIcon} w={6} h={6} color="teal.500" />
               <Text mt={2} fontWeight="bold">Phone</Text>
               <Text color={useColorModeValue('gray.600', 'gray.200')}>+1 (555) 123-4567</Text>
             </Box>
+            {/* Email Information */}
             <Box p={5} shadow="md" borderWidth="1px" borderRadius="lg">
               <Icon as={EmailIcon} w={6} h={6} color="teal.500" />
               <Text mt={2} fontWeight="bold">Email</Text>
               <Text color={useColorModeValue('gray.600', 'gray.200')}>contact@example.com</Text>
             </Box>
+            {/* Address Information */}
             <Box p={5} shadow="md" borderWidth="1px" borderRadius="lg">
               <Icon as={InfoIcon} w={6} h={6} color="teal.500" />
               <Text mt={2} fontWeight="bold">Address</Text>
@@ -81,6 +94,7 @@ function Contact() {
           </SimpleGrid>
         </VStack>
 
+        {/* Right column - Contact Form */}
         <Box
           bg={useColorModeValue('white', 'gray.700')}
           p={8}
@@ -90,6 +104,7 @@ function Contact() {
         >
           <form onSubmit={handleSubmit} style={{ width: '100%' }}>
             <VStack spacing={5}>
+              {/* Name Input Field */}
               <FormControl isRequired>
                 <FormLabel>Name</FormLabel>
                 <InputGroup>
@@ -108,6 +123,7 @@ function Contact() {
                 </InputGroup>
               </FormControl>
 
+              {/* Email Input Field */}
               <FormControl isRequired>
                 <FormLabel>Email</FormLabel>
                 <InputGroup>
@@ -127,6 +143,7 @@ function Contact() {
                 </InputGroup>
               </FormControl>
 
+              {/* Subject Input Field */}
               <FormControl isRequired>
                 <FormLabel>Subject</FormLabel>
                 <Input
@@ -142,6 +159,7 @@ function Contact() {
                 />
               </FormControl>
 
+              {/* Message Textarea */}
               <FormControl isRequired>
                 <FormLabel>Message</FormLabel>
                 <Textarea
@@ -159,6 +177,7 @@ function Contact() {
                 />
               </FormControl>
 
+              {/* Submit Button */}
               <Button
                 type="submit"
                 colorScheme="teal"
