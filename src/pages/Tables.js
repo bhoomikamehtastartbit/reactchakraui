@@ -1,3 +1,4 @@
+// Import required Chakra UI components and React hooks
 import { useState } from 'react';
 import {
   Container, Table, Thead, Tbody, Tr, Th, Td, Button, useDisclosure, Modal,
@@ -5,25 +6,26 @@ import {
   Heading, Box, Input, Stack, Select, Badge, TableContainer, IconButton,
   useColorModeValue
 } from '@chakra-ui/react';
+// Import icons for pagination and sorting indicators
 import { ChevronLeftIcon, ChevronRightIcon, TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 
 function Tables() {
-  // Modal state management
+  // Modal state for displaying user details
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedUser, setSelectedUser] = useState(null);
   
-  // Search and filtering state
+  // State for search functionality
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Pagination state
+  // State for handling pagination
   const [currentPage, setCurrentPage] = useState(1);
   
-  // Sorting state
+  // State for table column sorting
   const [sortField, setSortField] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
-  const itemsPerPage = 3;
+  const itemsPerPage = 3; // Number of items to display per page
 
-  // Sample user data
+  // Mock data array representing user records
   const data = [
     { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active' },
     { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Inactive' },
@@ -33,20 +35,19 @@ function Tables() {
     { id: 6, name: 'Diana Miller', email: 'diana@example.com', role: 'Editor', status: 'Inactive' },
   ];
 
-  // ✅ HOOKS MUST BE CALLED AT TOP
-  // Theme color variables for dark/light mode
+  // Theme colors for dark/light mode compatibility
   const rowHoverColor = useColorModeValue('gray.50', 'gray.700');
   const tableHeaderBg = useColorModeValue('gray.50', 'gray.700');
   const tableBg = useColorModeValue('white', 'gray.800');
 
-  // Filter data based on search query across all fields
+  // Filter data based on search query - searches across all user fields
   const filteredData = data.filter(user =>
     Object.values(user).some(value =>
       value.toString().toLowerCase().includes(searchQuery.toLowerCase())
     )
   );
 
-  // Sort data based on selected field and order
+  // Sort data based on selected column and sort direction
   const sortedData = [...filteredData].sort((a, b) => {
     if (sortOrder === 'asc') {
       return a[sortField] > b[sortField] ? 1 : -1;
@@ -54,14 +55,14 @@ function Tables() {
     return a[sortField] < b[sortField] ? 1 : -1;
   });
 
-  // Calculate pagination values
+  // Calculate pagination metrics and slice data for current page
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
   const paginatedData = sortedData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-  // Handle column sorting
+  // Toggle sort order and field when clicking column headers
   const handleSort = (field) => {
     if (sortField === field) {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
@@ -71,33 +72,36 @@ function Tables() {
     }
   };
 
-  // Handle row click to show user details in modal
+  // Handle row click to display user details in modal
   const handleRowClick = (user) => {
     setSelectedUser(user);
     onOpen();
   };
 
-  // Determine badge color based on status
+  // Utility function to determine badge color based on user status
   const getBadgeColor = (status) => {
     return status === 'Active' ? 'green' : 'red';
   };
 
   return (
     <Container maxW="container.xl" py={10}>
+      {/* Search and filter section */}
       <Box mb={8}>
         <Heading mb={4}>User Data Table</Heading>
         <Stack direction={{ base: 'column', md: 'row' }} spacing={4} mb={4}>
+          {/* Search input with responsive width */}
           <Input
             placeholder="Search users..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             maxW={{ base: 'full', md: '300px' }}
           />
+          {/* Items per page selector */}
           <Select
             maxW={{ base: 'full', md: '200px' }}
             value={itemsPerPage}
             onChange={(e) => {
-              // setItemsPerPage(Number(e.target.value)) // This is commented out
+              // Items per page handler (currently disabled)
             }}
           >
             <option value={3}>3 per page</option>
@@ -107,6 +111,7 @@ function Tables() {
         </Stack>
       </Box>
 
+      {/* Main table container with styling */}
       <TableContainer
         borderWidth="1px"
         borderRadius="lg"
@@ -114,8 +119,10 @@ function Tables() {
         bg={tableBg}
       >
         <Table variant="simple">
+          {/* Table header with sortable columns */}
           <Thead bg={tableHeaderBg}>
             <Tr>
+              {/* Sortable column headers with direction indicators */}
               <Th cursor="pointer" onClick={() => handleSort('name')}>
                 Name {sortField === 'name' && (sortOrder === 'asc' ? <TriangleUpIcon /> : <TriangleDownIcon />)}
               </Th>
@@ -129,22 +136,27 @@ function Tables() {
               <Th>Actions</Th>
             </Tr>
           </Thead>
+          {/* Table body with user data rows */}
           <Tbody>
             {paginatedData.map((user) => (
+              // Interactive row with hover effect
               <Tr
                 key={user.id}
                 _hover={{ bg: rowHoverColor }}
                 cursor="pointer"
               >
+                {/* User data cells */}
                 <Td>{user.name}</Td>
                 <Td>{user.email}</Td>
                 <Td>{user.role}</Td>
                 <Td>
+                  {/* Status badge with dynamic color */}
                   <Badge colorScheme={getBadgeColor(user.status)}>
                     {user.status}
                   </Badge>
                 </Td>
                 <Td>
+                  {/* Action button to view user details */}
                   <Button
                     size="sm"
                     colorScheme="teal"
@@ -159,15 +171,19 @@ function Tables() {
         </Table>
       </TableContainer>
 
+      {/* Pagination controls */}
       <Stack direction="row" spacing={2} justifyContent="center" mt={4}>
+        {/* Previous page button */}
         <IconButton
           icon={<ChevronLeftIcon />}
           onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
           isDisabled={currentPage === 1}
         />
+        {/* Page indicator */}
         <Text alignSelf="center">
           Page {currentPage} of {totalPages}
         </Text>
+        {/* Next page button */}
         <IconButton
           icon={<ChevronRightIcon />}
           onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
@@ -175,12 +191,14 @@ function Tables() {
         />
       </Stack>
 
+      {/* User details modal */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>User Details</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
+            {/* Display selected user details */}
             {selectedUser && (
               <Stack spacing={3}>
                 <Text><strong>Name:</strong> {selectedUser.name}</Text>
