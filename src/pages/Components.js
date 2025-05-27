@@ -26,7 +26,6 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  Tooltip,
   Avatar,
   AvatarGroup,
   Spinner,
@@ -64,19 +63,14 @@ import {
   TagCloseButton,
   Kbd,
   Code,
-  Divider,
-  CircularProgress,
-  List,
-  ListItem,
-  ListIcon,
-  OrderedList,
   UnorderedList,
+  OrderedList,
+  ListItem,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   MenuDivider,
-  IconButton,
   Textarea,
   NumberInput,
   NumberInputField,
@@ -91,7 +85,6 @@ import {
 } from '@chakra-ui/react';
 import {
   ChevronRightIcon,
-  AddIcon,
   WarningIcon,
   CheckIcon
 } from '@chakra-ui/icons';
