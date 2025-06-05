@@ -7,6 +7,7 @@
   height: 40vmin;
   pointer-events: none;
 }
+/* sample commit to check from github */
 /* Apply spinning animation to logo only if the user does not prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
