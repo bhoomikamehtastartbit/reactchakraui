@@ -9,6 +9,7 @@ function Navbar() {
   // State for mobile menu toggle
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  consoole.loog('test coderabbit ai');
   // Render the component
   return (
     // Main navigation container with responsive styling
